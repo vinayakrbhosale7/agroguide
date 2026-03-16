@@ -58,8 +58,7 @@ body{
 <div class="login-body">
 
     <form method="post">
-        {% csrf_token %}
-
+         {% csrf_token %}
         <div class="mb-3">
             <label>Username</label>
             {{ form.username }}
@@ -69,7 +68,6 @@ body{
             <label>Password</label>
             {{ form.password }}
         </div>
-
         <button type="submit" class="login-btn">
             → Login
         </button>

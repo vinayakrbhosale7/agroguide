@@ -1,125 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CropWise</title>
 
-<title>CropWise</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: #f4f6f9;
+        font-family: Arial;
+      }
 
-<style>
+      .navbar {
+        background: #1e8e3e;
+      }
 
-body{
-background:#f4f6f9;
-font-family:Arial;
-}
+      .navbar-brand {
+        color: white;
+        font-weight: bold;
+        font-size: 22px;
+      }
 
-.navbar{
-background:#1e8e3e;
-}
+      .nav-link {
+        color: white !important;
+        margin-left: 15px;
+      }
 
-.navbar-brand{
-color:white;
-font-weight:bold;
-font-size:22px;
-}
+      .nav-link:hover {
+        text-decoration: underline;
+      }
 
-.nav-link{
-color:white !important;
-margin-left:15px;
-}
+      .dashboard-header {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
 
-.nav-link:hover{
-text-decoration:underline;
-}
+      .card-box {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+      }
 
-.dashboard-header{
-margin-top:30px;
-margin-bottom:30px;
-}
+      .card-box:hover {
+        transform: translateY(-5px);
+      }
 
-.card-box{
-border:none;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-transition:0.3s;
-}
+      .footer {
+        margin-top: 50px;
+        background: #1e8e3e;
+        color: white;
+        padding: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
 
-.card-box:hover{
-transform:translateY(-5px);
-}
+  <body>
+    <!-- NAVBAR -->
 
-.footer{
-margin-top:50px;
-background:#1e8e3e;
-color:white;
-padding:15px;
-text-align:center;
-}
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="#">🌱 CropWise</a>
 
-</style>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Dashboard</a>
+            </li>
 
-</head>
+            <li class="nav-item">
+              <a class="nav-link" href="/recommend/">Get Recommendation</a>
+            </li>
 
-<body>
+            <li class="nav-item">
+              <a class="nav-link" href="/history/">History</a>
+            </li>
 
-<!-- NAVBAR -->
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-light text-dark ms-2"
+                href="/accounts/login/"
+                >Login</a
+              >
+            </li>
 
-<nav class="navbar navbar-expand-lg">
+            <li>
+              <form action="/accounts/logout/" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<div class="container">
+    <!-- PAGE CONTENT -->
 
-<a class="navbar-brand" href="#">🌱 CropWise</a>
+    <div class="container">{% block content %} {% endblock %}</div>
 
-<div class="collapse navbar-collapse">
+    <!-- FOOTER -->
 
-<ul class="navbar-nav ms-auto">
-
-<li class="nav-item">
-<a class="nav-link" href="/">Dashboard</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="/recommend/">Get Recommendation</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="/history/">History</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link btn btn-light text-dark ms-2" href="/accounts/login/">Login
-    
-</a>
-</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</nav>
-
-<!-- PAGE CONTENT -->
-
-<div class="container">
-
-{% block content %}
-
-{% endblock %}
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-<p>© 2026 CropWise | Smart Farming System 🌾</p>
-
-</div>
-
-</body>
+    <div class="footer">
+      <p>© 2026 CropWise | Smart Farming System 🌾</p>
+    </div>
+  </body>
 </html>
