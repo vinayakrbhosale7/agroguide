@@ -1,6 +1,7 @@
-# from django.urls import path
-# from . import views
+from django.urls import path
+from . import views
 
-# urlpatterns = [
-# path('', views.logout_view)
-# ]
+urlpatterns = [
+    path('signup/', views.signup),
+
+]

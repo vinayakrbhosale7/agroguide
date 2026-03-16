@@ -2,6 +2,11 @@
 
 {% block content %}
 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
 <style>
 body{
     background:#f3f5f7;
@@ -46,6 +51,20 @@ body{
     opacity:0.9;
 }
 
+.signup-text{
+    text-align:center;
+    margin-top:15px;
+}
+
+.signup-text a{
+    color:#0b7d34;
+    font-weight:500;
+    text-decoration:none;
+}
+
+.signup-text a:hover{
+    text-decoration:underline;
+}
 </style>
 
 <div class="login-card">
@@ -60,23 +79,27 @@ body{
     <form method="post">
          {% csrf_token %}
         <div class="mb-3">
-            <label>Username</label>
+            <label> <i class="fa fa-user-circle"></i> Username</label>
             {{ form.username }}
         </div>
 
         <div class="mb-3">
-            <label>Password</label>
+            <label> <i class="fa fa-lock"></i> Password</label>
             {{ form.password }}
         </div>
+
         <button type="submit" class="login-btn">
             → Login
         </button>
 
     </form>
 
+    <!-- Signup option added -->
+    <div class="signup-text">
+        <p>Don't have an account? <a href="/signup/signup/">Sign Up</a></p>
+    </div>
 
 </div>
-
 
 </div>
 

@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<style>
+  body {
+    background: #eef2f3;
+  }
+
+  .signup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .signup-card {
+    width: 420px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .signup-header {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+  }
+
+  .signup-header h2 {
+    margin-top: 10px;
+  }
+
+  .signup-body {
+    padding: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    font-weight: 500;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  .form-control:focus {
+    border-color: #1fa34a;
+    outline: none;
+  }
+
+  .signup-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    font-weight: 500;
+  }
+
+  .signup-footer {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .signup-footer a {
+    color: #0b7d34;
+    text-decoration: none;
+  }
+</style>
+
+<div class="signup-wrapper">
+  <div class="signup-card">
+    <div class="signup-header">
+      <i class="fa-solid fa-user-plus fa-2x"></i>
+      <h2>Create Account</h2>
+      <p>Join CropWise for smart farming decisions</p>
+    </div>
+
+    <div class="signup-body">
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label><i class="fa fa-user"></i> First Name</label>
+          {{ form.first_name }}
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa fa-user"></i> Last Name</label>
+          {{ form.last_name }}
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa fa-user-circle"></i> Username</label>
+          {{ form.username }}
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa fa-envelope"></i> Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="form-group">
+          <label><i class="fa fa-lock"></i> Password</label>
+          {{ form.password }}
+        </div>
+
+        <button type="submit" class="signup-btn">✔ Register</button>
+      </form>
+
+      <div class="signup-footer">
+        Already have an account?
+        <a href="/accounts/login/">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
