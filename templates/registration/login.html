@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+body{
+    background:#f3f5f7;
+}
+
+.login-card{
+    width:420px;
+    margin:auto;
+    margin-top:60px;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.login-header{
+    background:linear-gradient(135deg,#1fa34a,#0b7d34);
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+.login-header h2{
+    font-weight:600;
+}
+
+.login-body{
+    background:white;
+    padding:30px;
+}
+
+.login-btn{
+    background:linear-gradient(135deg,#1fa34a,#0b7d34);
+    border:none;
+    width:100%;
+    padding:10px;
+    color:white;
+    font-weight:500;
+    border-radius:8px;
+}
+
+.login-btn:hover{
+    opacity:0.9;
+}
+
+</style>
+
+<div class="login-card">
+
+<div class="login-header">
+    <h2>Welcome Back</h2>
+    <p>Login to access your crop recommendations</p>
+</div>
+
+<div class="login-body">
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Username</label>
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            <label>Password</label>
+            {{ form.password }}
+        </div>
+
+        <button type="submit" class="login-btn">
+            → Login
+        </button>
+
+    </form>
+
+
+</div>
+
+
+</div>
+
+{% endblock %}
