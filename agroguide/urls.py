@@ -25,7 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('farmer.urls')),
     path('recommend/', include('farmer.urls')),
+    path('br/', include('farmer.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     # path('logout/', include("authentication.urls"))
-    path('signup/', include("authentication.urls"))
+    path('signup/', include("authentication.urls")),
+    path('his/', include("farmer.urls"))
 ]
+

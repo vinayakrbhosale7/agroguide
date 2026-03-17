@@ -1,34 +1,111 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+
+/* WELCOME TEXT */
+
+.welcome-title {
+  color: white;
+  font-weight: 700;
+}
+
+.welcome-sub {
+  color: #f1f1f1;
+}
+
+/* GLASS BOX */
+
+.glass-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* CARDS */
+
+.dashboard-card {
+  border-radius: 15px;
+  transition: 0.3s;
+  background: rgba(255,255,255,0.9);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* ICON CIRCLE */
+
+.icon-circle {
+  width: 55px;
+  height: 55px;
+  font-size: 22px;
+}
+
+/* HOW IT WORKS */
+
+.step-circle {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-weight: bold;
+}
+
+/* LINK STYLE */
+
+.card-link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+</style>
 
 <div class="container mt-4">
-  <!-- Welcome Section -->
 
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  <!-- WELCOME SECTION -->
+
+  <div class="d-flex justify-content-between align-items-center mb-4 glass-box">
+
     <div>
-      <h2 class="fw-bold">Welcome, {{request.user.username}}!</h2>
-      <p class="text-muted">Ready to get crop recommendations?</p>
+      <h2 class="welcome-title">
+        👋 Welcome, {{request.user.username}}!
+      </h2>
+
+      <p class="welcome-sub">
+        Ready to get crop recommendations? 🌾
+      </p>
     </div>
 
     <div class="text-end">
       <div class="badge bg-success p-3 fs-6">
-        Welcome back, {{request.user.username}}
+        Logged in as {{request.user.username}}
       </div>
     </div>
+
   </div>
 
-  <!-- Cards Section -->
+  <!-- CARDS -->
 
   <div class="row g-4">
-    <!-- Recommendation Card -->
+
+    <!-- Recommendation -->
 
     <div class="col-md-6">
-      <div class="card shadow-sm border-0 p-4">
+      <div class="dashboard-card shadow p-4">
+
         <div class="d-flex align-items-center">
-          <div
-            class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center"
-            style="width: 55px; height: 55px; font-size: 22px"
-          >
-            +
+
+          <div class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center icon-circle">
+            <i class="fa fa-plus"></i>
           </div>
 
           <div class="ms-3">
@@ -38,103 +115,100 @@
               Get crop suggestions based on your conditions
             </p>
 
-            <a href="/recommend/" class="text-success fw-bold"> Start → </a>
+            <a href="/br/before_recommendation" class="text-success card-link">
+              Start →
+            </a>
           </div>
+
         </div>
+
       </div>
     </div>
 
-    <!-- History Card -->
+    <!-- History -->
 
     <div class="col-md-6">
-      <div class="card shadow-sm border-0 p-4">
+      <div class="dashboard-card shadow p-4">
+
         <div class="d-flex align-items-center">
-          <div
-            class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center"
-            style="width: 55px; height: 55px; font-size: 22px"
-          >
-            ↺
+
+          <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center icon-circle">
+            <i class="fa fa-history"></i>
           </div>
 
           <div class="ms-3">
             <h5 class="mb-1">View History</h5>
 
-            <p class="text-muted mb-2">Check your past recommendations</p>
+            <p class="text-muted mb-2">
+              Check your past recommendations
+            </p>
 
-            <a href="/history/" class="text-primary fw-bold"> View → </a>
+            <a href="/his/history/" class="text-primary card-link">
+              View →
+            </a>
           </div>
+
         </div>
+
       </div>
     </div>
+
   </div>
 
-  <!-- How It Works -->
+  <!-- HOW IT WORKS -->
 
-  <div class="card shadow-sm border-0 mt-5 p-5">
-    <h3 class="text-center mb-5">How It Works</h3>
+  <div class="glass-box mt-5 p-5">
+
+    <h3 class="text-center mb-5 text-white">⚙️ How It Works</h3>
 
     <div class="row text-center">
+
       <div class="col-md-4">
-        <div
-          class="bg-success text-white rounded-circle mx-auto mb-3"
-          style="
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            font-weight: bold;
-          "
-        >
+
+        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
           1
         </div>
 
-        <h5>Enter Details</h5>
+        <h5 class="text-white">Enter Details</h5>
 
-        <p class="text-muted">
+        <p class="text-light">
           Provide soil type, rainfall, temperature, and season information
         </p>
+
       </div>
 
       <div class="col-md-4">
-        <div
-          class="bg-success text-white rounded-circle mx-auto mb-3"
-          style="
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            font-weight: bold;
-          "
-        >
+
+        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
           2
         </div>
 
-        <h5>Get Results</h5>
+        <h5 class="text-white">Get Results</h5>
 
-        <p class="text-muted">
+        <p class="text-light">
           Our system analyzes your data and recommends suitable crops
         </p>
+
       </div>
 
       <div class="col-md-4">
-        <div
-          class="bg-success text-white rounded-circle mx-auto mb-3"
-          style="
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            font-weight: bold;
-          "
-        >
+
+        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
           3
         </div>
 
-        <h5>Save & Review</h5>
+        <h5 class="text-white">Save & Review</h5>
 
-        <p class="text-muted">
+        <p class="text-light">
           All recommendations are saved for future reference
         </p>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 {% endblock %}

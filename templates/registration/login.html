@@ -1,106 +1,208 @@
 {% extends "base.html" %}
-
 {% block content %}
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-body{
-    background:#f3f5f7;
+
+/* CARD */
+
+.login-card {
+  width: 420px;
+  margin: auto;
+  margin-top: 70px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.login-card{
-    width:420px;
-    margin:auto;
-    margin-top:60px;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+/* HEADER */
+
+.login-header {
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
 }
 
-.login-header{
-    background:linear-gradient(135deg,#1fa34a,#0b7d34);
-    color:white;
-    text-align:center;
-    padding:35px 20px;
+.login-header h2 {
+  font-weight: 600;
 }
 
-.login-header h2{
-    font-weight:600;
+/* BODY */
+
+.login-body {
+  padding: 30px;
 }
 
-.login-body{
-    background:white;
-    padding:30px;
+/* INPUTS */
+
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
 }
 
-.login-btn{
-    background:linear-gradient(135deg,#1fa34a,#0b7d34);
-    border:none;
-    width:100%;
-    padding:10px;
-    color:white;
-    font-weight:500;
-    border-radius:8px;
+.form-control:focus {
+  border-color: #1fa34a;
+  box-shadow: 0 0 8px rgba(31,163,74,0.5);
 }
 
-.login-btn:hover{
-    opacity:0.9;
+/* INPUT ICON */
+
+.input-group-text {
+  background: #1fa34a;
+  color: white;
+  border: none;
 }
 
-.signup-text{
-    text-align:center;
-    margin-top:15px;
+/* BUTTON */
+
+.login-btn {
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  border: none;
+  width: 100%;
+  padding: 12px;
+  color: white;
+  font-weight: 500;
+  border-radius: 30px;
+  transition: 0.3s;
 }
 
-.signup-text a{
-    color:#0b7d34;
-    font-weight:500;
-    text-decoration:none;
+.login-btn:hover {
+  background: #ffd700;
+  color: black;
+  transform: scale(1.05);
 }
 
-.signup-text a:hover{
-    text-decoration:underline;
+/* SIGNUP */
+
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
 }
+
+.signup-text a {
+  color: #ffd700;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* ICON FLOAT */
+
+.login-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
 </style>
 
 <div class="login-card">
 
-<div class="login-header">
-    <h2>Welcome Back</h2>
-    <p>Login to access your crop recommendations</p>
-</div>
+  <!-- HEADER -->
 
-<div class="login-body">
+  <div class="login-header">
+    <div class="login-icon">
+      <i class="fa fa-seedling"></i>
+    </div>
+
+    <h2>Welcome Back</h2>
+    <p>Login to access your crop recommendations 🌾</p>
+  </div>
+
+  <!-- BODY -->
+
+  <div class="login-body">
 
     <form method="post">
-         {% csrf_token %}
-        <div class="mb-3">
-            <label> <i class="fa fa-user-circle"></i> Username</label>
-            {{ form.username }}
-        </div>
+      {% csrf_token %}
 
-        <div class="mb-3">
-            <label> <i class="fa fa-lock"></i> Password</label>
-            {{ form.password }}
-        </div>
+      <!-- USERNAME -->
 
-        <button type="submit" class="login-btn">
-            → Login
-        </button>
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-user"></i>
+          </span>
+
+          {{ form.username }}
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-lock"></i>
+          </span>
+
+          {{ form.password }}
+
+          <!-- SHOW/HIDE -->
+          <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+            <i class="fa fa-eye" id="eyeIcon"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- BUTTON -->
+
+      <button type="submit" class="login-btn">
+        🔐 Login
+      </button>
 
     </form>
 
-    <!-- Signup option added -->
+    <!-- SIGNUP -->
+
     <div class="signup-text">
-        <p>Don't have an account? <a href="/signup/signup/">Sign Up</a></p>
+      <p>Don't have an account?
+        <a href="/signup/signup/">Sign Up</a>
+      </p>
     </div>
 
-</div>
+  </div>
 
 </div>
+
+<!-- JS FOR PASSWORD TOGGLE -->
+
+<script>
+function togglePassword() {
+  let passwordField = document.getElementById("id_password");
+  let icon = document.getElementById("eyeIcon");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    passwordField.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
+}
+</script>
 
 {% endblock %}

@@ -1,66 +1,169 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+
+/* MAIN BOX */
+
+.result-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+
+.result-title {
+  font-weight: 700;
+  color: #000;
+}
+
+/* PARAM CARDS */
+
+.param-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 15px;
+  transition: 0.3s;
+}
+
+.param-card:hover {
+  transform: translateY(-5px);
+}
+
+/* CROP CARD */
+
+.crop-card {
+  border-radius: 20px;
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  color: white;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.crop-card:hover {
+  transform: scale(1.03);
+}
+
+/* ICON ANIMATION */
+
+.crop-icon {
+  font-size: 50px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* BUTTON */
+
+.custom-btn {
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.custom-btn:hover {
+  background: #ffd700;
+  color: black;
+  transform: scale(1.05);
+}
+
+</style>
 
 <div class="container mt-5">
-  <!-- Page Title -->
+
+  <!-- TITLE -->
 
   <div class="text-center mb-5">
-    <h2 class="fw-bold">Your Crop Recommendations</h2>
-
-    <p class="text-muted">Based on your agricultural parameters</p>
+    <h2 class="result-title">🌿 Your Crop Recommendation</h2>
+    <p class="text-dark">Based on your agricultural inputs</p>
   </div>
 
-  <!-- Input Parameters -->
+  <!-- INPUT PARAMETERS -->
 
-  <div class="card shadow-sm border-0 p-4 mb-5">
-    <h5 class="text-success mb-3">Input Parameters</h5>
+  <div class="result-box mb-5">
 
-    <div class="row text-center">
+    <h5 class="text-success mb-4 text-center">📊 Input Parameters</h5>
+
+    <div class="row text-center g-3">
+
       <div class="col-md-3">
-        <h6>🌱 Soil Type</h6>
-        <p>{{ soil }}</p>
+        <div class="param-card">
+          <i class="fa fa-leaf text-success"></i>
+          <h6>Soil</h6>
+          <p>{{ soil }}</p>
+        </div>
       </div>
 
       <div class="col-md-3">
-        <h6>📅 Season</h6>
-        <p>{{ season }}</p>
+        <div class="param-card">
+          <i class="fa fa-calendar text-primary"></i>
+          <h6>Season</h6>
+          <p>{{ season }}</p>
+        </div>
       </div>
 
       <div class="col-md-3">
-        <h6>🌧 Rainfall</h6>
-        <p>{{ rain }} mm</p>
+        <div class="param-card">
+          <i class="fa fa-cloud-rain text-info"></i>
+          <h6>Rainfall</h6>
+          <p>{{ rain }} mm</p>
+        </div>
       </div>
 
       <div class="col-md-3">
-        <h6>🌡 Temperature</h6>
-        <p>{{ temp }} °C</p>
+        <div class="param-card">
+          <i class="fa fa-temperature-high text-danger"></i>
+          <h6>Temperature</h6>
+          <p>{{ temp }} °C</p>
+        </div>
       </div>
+
     </div>
+
   </div>
 
-  <!-- Recommended Crop -->
+  <!-- RESULT -->
 
-  <div class="text-center mb-4">
-    <h3 class="fw-semibold">Recommended Crop</h3>
+  <div class="text-center mb-3">
+    <h3 class="fw-semibold text-dark">🌾 Recommended Crop</h3>
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-md-4">
-      <div class="card shadow border-0 text-center p-4">
-        <div class="mb-3" style="font-size: 40px">🌾</div>
+    <div class="col-md-5">
 
-        <h4 class="text-success">{{ crop }}</h4>
+      <div class="crop-card text-center">
 
-        <p class="text-muted">
-          This crop is suitable based on your soil, rainfall, temperature and
-          season conditions.
+        <div class="crop-icon mb-3">🌾</div>
+
+        <h2>{{ crop }}</h2>
+
+        <p>
+          This crop is highly suitable based on your soil type, rainfall,
+          temperature and season conditions.
         </p>
 
-        <a href="/recommend" class="btn btn-success">
-          Try Another Recommendation
+        <a href="/recommend" class="btn btn-light custom-btn mt-3">
+          🔁 Try Again
         </a>
+
       </div>
+
     </div>
   </div>
+
 </div>
 
 {% endblock %}

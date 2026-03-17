@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+.about-hero {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url("{% static 'images/farmer.jpg' %}");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.about-hero h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.about-section {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  margin-top: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.feature-box {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.feature-box i {
+  font-size: 30px;
+  color: #1e8e3e;
+  margin-bottom: 10px;
+}
+
+.mission-box {
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+}
+</style>
+
+<div class="container mt-4">
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <h1>🌱 About AgroGuide</h1>
+    <p>Smart Farming Solution for Better Crop Decisions</p>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-section">
+    <h3>📌 What is AgroGuide?</h3>
+    <p>
+      AgroGuide is an intelligent crop recommendation system that helps farmers
+      choose the best crops based on temperature, rainfall, soil type, and season.
+      It provides smart suggestions to improve farming productivity.
+    </p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="about-section">
+    <h3 class="mb-4">🚀 Features</h3>
+
+    <div class="row g-4">
+
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-seedling"></i>
+          <h5>Smart Recommendation</h5>
+          <p>Get best crop suggestions instantly</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-cloud-rain"></i>
+          <h5>Weather Based</h5>
+          <p>Uses temperature & rainfall data</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-leaf"></i>
+          <h5>Soil Analysis</h5>
+          <p>Supports multiple soil types</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="feature-box">
+          <i class="fa fa-history"></i>
+          <h5>History Tracking</h5>
+          <p>View past recommendations</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="about-section">
+    <div class="mission-box">
+      <h3>🌾 Our Mission</h3>
+      <p>
+        To empower farmers with smart technology and help them make better crop
+        decisions for higher productivity and sustainable agriculture.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

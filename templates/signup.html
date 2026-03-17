@@ -1,132 +1,264 @@
-{% extends 'base.html' %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-  body {
-    background: #eef2f3;
-  }
 
-  .signup-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 60px;
-  }
+/* CARD */
 
-  .signup-card {
-    width: 420px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
+.signup-card {
+  width: 420px;
+  margin: auto;
+  margin-top: 70px;
+  border-radius: 20px;
 
-  .signup-header {
-    background: linear-gradient(135deg, #1fa34a, #0b7d34);
-    color: white;
-    text-align: center;
-    padding: 35px 20px;
-  }
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
 
-  .signup-header h2 {
-    margin-top: 10px;
-  }
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
 
-  .signup-body {
-    padding: 30px;
-  }
+/* HEADER */
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+.signup-header {
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
 
-  .form-group label {
-    font-weight: 500;
-  }
+.signup-header h2 {
+  font-weight: 600;
+}
 
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
+/* BODY */
 
-  .form-control:focus {
-    border-color: #1fa34a;
-    outline: none;
-  }
+.signup-body {
+  padding: 30px;
+}
 
-  .signup-btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #1fa34a, #0b7d34);
-    color: white;
-    font-weight: 500;
-  }
+/* INPUTS */
 
-  .signup-footer {
-    text-align: center;
-    margin-top: 15px;
-  }
+.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s;
+}
 
-  .signup-footer a {
-    color: #0b7d34;
-    text-decoration: none;
-  }
+.form-control:focus {
+  border-color: #1fa34a;
+  box-shadow: 0 0 8px rgba(31,163,74,0.5);
+}
+
+/* INPUT ICON */
+
+.input-group-text {
+  background: #1fa34a;
+  color: white;
+  border: none;
+}
+
+/* BUTTON */
+
+.signup-btn {
+  background: linear-gradient(135deg,#1fa34a,#0b7d34);
+  border: none;
+  width: 100%;
+  padding: 12px;
+  color: white;
+  font-weight: 500;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.signup-btn:hover {
+  background: #ffd700;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* LOGIN TEXT */
+
+.login-text {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-text a {
+  color: #ffd700;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* ERROR */
+
+.error {
+  color: #ff4d4d;
+  font-size: 13px;
+}
+
+/* ICON FLOAT */
+
+.signup-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
 </style>
 
-<div class="signup-wrapper">
-  <div class="signup-card">
-    <div class="signup-header">
-      <i class="fa-solid fa-user-plus fa-2x"></i>
-      <h2>Create Account</h2>
-      <p>Join CropWise for smart farming decisions</p>
+<div class="signup-card">
+
+  <!-- HEADER -->
+
+  <div class="signup-header">
+    <div class="signup-icon">
+      <i class="fa fa-user-plus"></i>
     </div>
 
-    <div class="signup-body">
-      <form method="post">
-        {% csrf_token %}
+    <h2>Create Account</h2>
+    <p>Register to get crop recommendations 🌾</p>
+  </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-user"></i> First Name</label>
+  <!-- BODY -->
+
+  <div class="signup-body">
+
+    <form method="post">
+      {% csrf_token %}
+
+      {{ form.non_field_errors }}
+
+      <!-- FIRST NAME -->
+
+      <div class="mb-3">
+        <label>First Name</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-user"></i>
+          </span>
           {{ form.first_name }}
         </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-user"></i> Last Name</label>
+        <div class="error">{{ form.first_name.errors }}</div>
+      </div>
+
+      <!-- LAST NAME -->
+
+      <div class="mb-3">
+        <label>Last Name</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-user"></i>
+          </span>
           {{ form.last_name }}
         </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-user-circle"></i> Username</label>
+        <div class="error">{{ form.last_name.errors }}</div>
+      </div>
+
+      <!-- USERNAME -->
+
+      <div class="mb-3">
+        <label>Username</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-user-circle"></i>
+          </span>
           {{ form.username }}
         </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-envelope"></i> Email</label>
+        <div class="error">{{ form.username.errors }}</div>
+      </div>
+
+      <!-- EMAIL -->
+
+      <div class="mb-3">
+        <label>Email</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-envelope"></i>
+          </span>
           {{ form.email }}
         </div>
 
-        <div class="form-group">
-          <label><i class="fa fa-lock"></i> Password</label>
+        <div class="error">{{ form.email.errors }}</div>
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="mb-3">
+        <label>Password</label>
+
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fa fa-lock"></i>
+          </span>
+
           {{ form.password }}
+
+          <!-- SHOW/HIDE -->
+          <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+            <i class="fa fa-eye" id="eyeIcon"></i>
+          </span>
         </div>
 
-        <button type="submit" class="signup-btn">✔ Register</button>
-      </form>
-
-      <div class="signup-footer">
-        Already have an account?
-        <a href="/accounts/login/">Login</a>
+        <div class="error">{{ form.password.errors }}</div>
       </div>
+
+      <!-- BUTTON -->
+
+      <button type="submit" class="signup-btn">
+        🚀 Register
+      </button>
+
+    </form>
+
+    <!-- LOGIN LINK -->
+
+    <div class="login-text">
+      <p>Already have an account?
+        <a href="/login/">Login</a>
+      </p>
     </div>
+
   </div>
+
 </div>
+
+<!-- PASSWORD TOGGLE -->
+
+<script>
+function togglePassword() {
+  let passwordField = document.getElementById("id_password");
+  let icon = document.getElementById("eyeIcon");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    passwordField.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
+}
+</script>
 
 {% endblock %}

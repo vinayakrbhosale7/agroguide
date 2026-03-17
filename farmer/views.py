@@ -1,41 +1,157 @@
 from django.shortcuts import render
 from .models import FarmerData
 from django.contrib.auth.decorators import login_required
-
-
 crop_data = {
+
 "Rice":{
-"temp_min":20,
-"temp_max":35,
-"rain_min":200,
-"rain_max":400,
-"soil":["Clay","Loamy"],
+"temp_min":20,"temp_max":35,
+"rain_min":200,"rain_max":400,
+"soil":["Clay","Loamy","Alluvial"],
 "season":"Kharif"
 },
 
 "Wheat":{
-"temp_min":10,
-"temp_max":25,
-"rain_min":50,
-"rain_max":100,
-"soil":["Loamy","Black"],
+"temp_min":10,"temp_max":25,
+"rain_min":50,"rain_max":100,
+"soil":["Loamy","Black","Alluvial"],
 "season":"Rabi"
 },
 
 "Cotton":{
-"temp_min":25,
-"temp_max":35,
-"rain_min":100,
-"rain_max":200,
-"soil":["Black"],
+"temp_min":25,"temp_max":35,
+"rain_min":100,"rain_max":200,
+"soil":["Black","Alluvial"],
 "season":"Kharif"
-}
+},
+
+"Sugarcane":{
+"temp_min":20,"temp_max":35,
+"rain_min":150,"rain_max":300,
+"soil":["Loamy","Black","Alluvial"],
+"season":"Annual"
+},
+
+"Maize":{
+"temp_min":18,"temp_max":30,
+"rain_min":50,"rain_max":150,
+"soil":["Loamy","Alluvial"],
+"season":"Kharif"
+},
+
+"Bajra":{
+"temp_min":25,"temp_max":40,
+"rain_min":40,"rain_max":100,
+"soil":["Sandy","Loamy"],
+"season":"Kharif"
+},
+
+"Jowar":{
+"temp_min":25,"temp_max":35,
+"rain_min":50,"rain_max":100,
+"soil":["Black","Loamy"],
+"season":"Kharif"
+},
+
+"Barley":{
+"temp_min":12,"temp_max":25,
+"rain_min":40,"rain_max":100,
+"soil":["Loamy","Alluvial"],
+"season":"Rabi"
+},
+
+"Soybean":{
+"temp_min":20,"temp_max":30,
+"rain_min":60,"rain_max":120,
+"soil":["Black","Loamy"],
+"season":"Kharif"
+},
+
+"Groundnut":{
+"temp_min":20,"temp_max":30,
+"rain_min":50,"rain_max":100,
+"soil":["Sandy","Loamy"],
+"season":"Kharif"
+},
+
+"Mustard":{
+"temp_min":10,"temp_max":25,
+"rain_min":25,"rain_max":75,
+"soil":["Loamy","Alluvial"],
+"season":"Rabi"
+},
+
+"Chickpea":{
+"temp_min":20,"temp_max":30,
+"rain_min":30,"rain_max":60,
+"soil":["Sandy","Loamy"],
+"season":"Rabi"
+},
+
+"Lentil":{
+"temp_min":15,"temp_max":25,
+"rain_min":30,"rain_max":60,
+"soil":["Loamy","Alluvial"],
+"season":"Rabi"
+},
+
+"Tea":{
+"temp_min":18,"temp_max":30,
+"rain_min":150,"rain_max":300,
+"soil":["Loamy","Acidic"],
+"season":"Annual"
+},
+
+"Coffee":{
+"temp_min":15,"temp_max":28,
+"rain_min":150,"rain_max":250,
+"soil":["Loamy","Acidic"],
+"season":"Annual"
+},
+
+"Tomato":{
+"temp_min":18,"temp_max":30,
+"rain_min":50,"rain_max":100,
+"soil":["Loamy","Sandy"],
+"season":"Zaid"
+},
+
+"Potato":{
+"temp_min":15,"temp_max":25,
+"rain_min":40,"rain_max":80,
+"soil":["Loamy","Sandy"],
+"season":"Rabi"
+},
+
+"Onion":{
+"temp_min":13,"temp_max":30,
+"rain_min":30,"rain_max":70,
+"soil":["Loamy","Sandy"],
+"season":"Rabi"
+},
+
+"Watermelon":{
+"temp_min":22,"temp_max":35,
+"rain_min":40,"rain_max":80,
+"soil":["Sandy","Loamy"],
+"season":"Zaid"
+},
+
+"Cucumber":{
+"temp_min":20,"temp_max":30,
+"rain_min":40,"rain_max":80,
+"soil":["Loamy","Sandy"],
+"season":"Zaid"
 }
 
-@login_required
+}
+
+
 def dashboard(request):
     return render(request,"dashboard.html")
 
+@login_required
+def before_recommendation(request):
+    return render(request,"before_recommendation.html")
 
 def recommend_crop(temp, rain, soil, season):
 
@@ -93,3 +209,16 @@ def home(request):
 })
 
     return render(request,"crop_form.html")
+
+
+from .models import FarmerData
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def history(request):
+    data = FarmerData.objects.all().order_by('-created_at')  # latest first
+    return render(request, "history.html", {"data": data})
+
+def about(request):
+    return render(request,"about.html")
+
