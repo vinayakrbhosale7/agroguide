@@ -29,6 +29,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # path('logout/', include("authentication.urls"))
     path('signup/', include("authentication.urls")),
-    path('his/', include("farmer.urls"))
+    path('his/', include("farmer.urls")),
+    path('delete_his/<int:id>/', include("farmer.urls")),
 ]
 

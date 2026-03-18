@@ -1,90 +1,90 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
+  .hero-box {
+    text-align: center;
+    padding: 60px 30px;
+    border-radius: 20px;
 
-.hero-box {
-  text-align: center;
-  padding: 60px 30px;
-  border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
 
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+  /* TITLE */
 
-/* TITLE */
+  .hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+  }
 
-.hero-title {
-  font-size: 42px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 15px;
-}
+  /* SUBTEXT */
 
-/* SUBTEXT */
+  .hero-subtext {
+    font-size: 18px;
+    color: white;
+  }
 
-.hero-subtext {
-  font-size: 18px;
-  color: white;
-}
+  /* BUTTON */
 
-/* BUTTON */
+  .hero-btn {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    color: black;
+    transition: 0.3s;
+    text-decoration: none; /* ✅ ADD THIS */
+    display: inline-block; /* ensures proper button look */
+  }
 
-.hero-btn {
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  border: none;
-  padding: 12px 30px;
-  font-size: 18px;
-  border-radius: 30px;
-  color: black;
-  transition: 0.3s;
-  text-decoration: none;   /* ✅ ADD THIS */
-  display: inline-block;   /* ensures proper button look */
-}
+  .hero-btn:hover {
+    transform: scale(1.08);
+    background: #ffd700;
+    color: black;
+    text-decoration: none; /* ✅ also remove on hover */
+  }
 
-.hero-btn:hover {
-  transform: scale(1.08);
-  background: #ffd700;
-  color: black;
-  text-decoration: none;   /* ✅ also remove on hover */
-}
+  /* ICON ANIMATION */
 
-/* ICON ANIMATION */
+  .hero-icon {
+    font-size: 50px;
+    color: #1fa34a;
+    margin-bottom: 15px;
+    animation: float 2s infinite ease-in-out;
+  }
 
-.hero-icon {
-  font-size: 50px;
-  color: #1fa34a;
-  margin-bottom: 15px;
-  animation: float 2s infinite ease-in-out;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
 </style>
 
 <div class="container mt-5">
-
   <div class="hero-box">
-
     <!-- ICON -->
     <div class="hero-icon">
       <i class="fa fa-seedling"></i>
     </div>
 
     <!-- TITLE -->
-    <h1 class="hero-title">
-      Smart Crop Recommendation System
-    </h1>
+    <h1 class="hero-title">Smart Crop Recommendation System</h1>
 
     <!-- SUBTEXT -->
     <p class="hero-subtext">
@@ -95,9 +95,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <a href="/recommend/" class="hero-btn mt-3 d-inline-block">
       🚀 Get Started
     </a>
-
   </div>
-
 </div>
 
 {% endblock %}

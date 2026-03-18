@@ -1,66 +1,65 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %} {% load static %}
 
-{% load static %}
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
-.about-hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url("{% static 'images/farmer.jpg' %}");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-  border-radius: 15px;
-}
+  .about-hero {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/farmer.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    border-radius: 15px;
+  }
 
-.about-hero h1 {
-  font-size: 40px;
-  font-weight: bold;
-}
+  .about-hero h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
 
-.about-section {
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  margin-top: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+  .about-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
 
-.feature-box {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  transition: 0.3s;
-}
+  .feature-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+  }
 
-.feature-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
+  .feature-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
 
-.feature-box i {
-  font-size: 30px;
-  color: #1e8e3e;
-  margin-bottom: 10px;
-}
+  .feature-box i {
+    font-size: 30px;
+    color: #1e8e3e;
+    margin-bottom: 10px;
+  }
 
-.mission-box {
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  color: white;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-}
+  .mission-box {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+  }
 </style>
 
 <div class="container mt-4">
-
   <!-- HERO -->
   <div class="about-hero">
     <h1>🌱 About AgroGuide</h1>
@@ -72,8 +71,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <h3>📌 What is AgroGuide?</h3>
     <p>
       AgroGuide is an intelligent crop recommendation system that helps farmers
-      choose the best crops based on temperature, rainfall, soil type, and season.
-      It provides smart suggestions to improve farming productivity.
+      choose the best crops based on temperature, rainfall, soil type, and
+      season. It provides smart suggestions to improve farming productivity.
     </p>
   </div>
 
@@ -82,7 +81,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <h3 class="mb-4">🚀 Features</h3>
 
     <div class="row g-4">
-
       <div class="col-md-3">
         <div class="feature-box">
           <i class="fa fa-seedling"></i>
@@ -114,7 +112,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           <p>View past recommendations</p>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -128,7 +125,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       </p>
     </div>
   </div>
-
 </div>
 
 {% endblock %}

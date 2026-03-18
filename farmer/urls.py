@@ -7,4 +7,5 @@ path('recommend/',views.home,name="recommend"),
 path('before_recommendation/',views.before_recommendation,name="before_recommendation"),
 path('history/',views.history,name="history"),
 path('about/', views.about, name='about'),
+path('delete_history/<int:id>/', views.delete_history, name='delete_history'),
 ]

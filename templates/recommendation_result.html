@@ -1,89 +1,92 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
+  /* MAIN BOX */
 
-/* MAIN BOX */
+  .result-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
 
-.result-box {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+  /* TITLE */
 
-/* TITLE */
+  .result-title {
+    font-weight: 700;
+    color: #000;
+  }
 
-.result-title {
-  font-weight: 700;
-  color: #000;
-}
+  /* PARAM CARDS */
 
-/* PARAM CARDS */
+  .param-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.3s;
+  }
 
-.param-card {
-  background: rgba(255,255,255,0.9);
-  border-radius: 12px;
-  padding: 15px;
-  transition: 0.3s;
-}
+  .param-card:hover {
+    transform: translateY(-5px);
+  }
 
-.param-card:hover {
-  transform: translateY(-5px);
-}
+  /* CROP CARD */
 
-/* CROP CARD */
+  .crop-card {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+  }
 
-.crop-card {
-  border-radius: 20px;
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  color: white;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
+  .crop-card:hover {
+    transform: scale(1.03);
+  }
 
-.crop-card:hover {
-  transform: scale(1.03);
-}
+  /* ICON ANIMATION */
 
-/* ICON ANIMATION */
+  .crop-icon {
+    font-size: 50px;
+    animation: float 2s infinite ease-in-out;
+  }
 
-.crop-icon {
-  font-size: 50px;
-  animation: float 2s infinite ease-in-out;
-}
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
+  /* BUTTON */
 
-/* BUTTON */
+  .custom-btn {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: 0.3s;
+  }
 
-.custom-btn {
-  border-radius: 30px;
-  padding: 10px 25px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.custom-btn:hover {
-  background: #ffd700;
-  color: black;
-  transform: scale(1.05);
-}
-
+  .custom-btn:hover {
+    background: #ffd700;
+    color: black;
+    transform: scale(1.05);
+  }
 </style>
 
 <div class="container mt-5">
-
   <!-- TITLE -->
 
   <div class="text-center mb-5">
@@ -94,11 +97,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   <!-- INPUT PARAMETERS -->
 
   <div class="result-box mb-5">
-
     <h5 class="text-success mb-4 text-center">📊 Input Parameters</h5>
 
     <div class="row text-center g-3">
-
       <div class="col-md-3">
         <div class="param-card">
           <i class="fa fa-leaf text-success"></i>
@@ -130,9 +131,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           <p>{{ temp }} °C</p>
         </div>
       </div>
-
     </div>
-
   </div>
 
   <!-- RESULT -->
@@ -143,9 +142,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
   <div class="row justify-content-center">
     <div class="col-md-5">
-
       <div class="crop-card text-center">
-
         <div class="crop-icon mb-3">🌾</div>
 
         <h2>{{ crop }}</h2>
@@ -158,12 +155,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <a href="/recommend" class="btn btn-light custom-btn mt-3">
           🔁 Try Again
         </a>
-
       </div>
-
     </div>
   </div>
-
 </div>
 
 {% endblock %}

@@ -1,126 +1,130 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
+  /* CARD */
 
-/* CARD */
+  .signup-card {
+    width: 420px;
+    margin: auto;
+    margin-top: 70px;
+    border-radius: 20px;
 
-.signup-card {
-  width: 420px;
-  margin: auto;
-  margin-top: 70px;
-  border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
 
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
+  /* HEADER */
 
-/* HEADER */
+  .signup-header {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+  }
 
-.signup-header {
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  color: white;
-  text-align: center;
-  padding: 35px 20px;
-}
+  .signup-header h2 {
+    font-weight: 600;
+  }
 
-.signup-header h2 {
-  font-weight: 600;
-}
+  /* BODY */
 
-/* BODY */
+  .signup-body {
+    padding: 30px;
+  }
 
-.signup-body {
-  padding: 30px;
-}
+  /* INPUTS */
 
-/* INPUTS */
+  .form-control {
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.3s;
+  }
 
-.form-control {
-  border-radius: 10px;
-  padding: 10px;
-  transition: 0.3s;
-}
+  .form-control:focus {
+    border-color: #1fa34a;
+    box-shadow: 0 0 8px rgba(31, 163, 74, 0.5);
+  }
 
-.form-control:focus {
-  border-color: #1fa34a;
-  box-shadow: 0 0 8px rgba(31,163,74,0.5);
-}
+  /* INPUT ICON */
 
-/* INPUT ICON */
+  .input-group-text {
+    background: #1fa34a;
+    color: white;
+    border: none;
+  }
 
-.input-group-text {
-  background: #1fa34a;
-  color: white;
-  border: none;
-}
+  /* BUTTON */
 
-/* BUTTON */
+  .signup-btn {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    border: none;
+    width: 100%;
+    padding: 12px;
+    color: white;
+    font-weight: 500;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
 
-.signup-btn {
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  border: none;
-  width: 100%;
-  padding: 12px;
-  color: white;
-  font-weight: 500;
-  border-radius: 30px;
-  transition: 0.3s;
-}
+  .signup-btn:hover {
+    background: #ffd700;
+    color: black;
+    transform: scale(1.05);
+  }
 
-.signup-btn:hover {
-  background: #ffd700;
-  color: black;
-  transform: scale(1.05);
-}
+  /* LOGIN TEXT */
 
-/* LOGIN TEXT */
+  .login-text {
+    text-align: center;
+    margin-top: 15px;
+  }
 
-.login-text {
-  text-align: center;
-  margin-top: 15px;
-}
+  .login-text a {
+    color: #ffd700;
+    font-weight: 500;
+    text-decoration: none;
+  }
 
-.login-text a {
-  color: #ffd700;
-  font-weight: 500;
-  text-decoration: none;
-}
+  .login-text a:hover {
+    text-decoration: underline;
+  }
 
-.login-text a:hover {
-  text-decoration: underline;
-}
+  /* ERROR */
 
-/* ERROR */
+  .error {
+    color: #ff4d4d;
+    font-size: 13px;
+  }
 
-.error {
-  color: #ff4d4d;
-  font-size: 13px;
-}
+  /* ICON FLOAT */
 
-/* ICON FLOAT */
+  .signup-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    animation: float 2s infinite ease-in-out;
+  }
 
-.signup-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
-  animation: float 2s infinite ease-in-out;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
 </style>
 
 <div class="signup-card">
-
   <!-- HEADER -->
 
   <div class="signup-header">
@@ -135,11 +139,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   <!-- BODY -->
 
   <div class="signup-body">
-
     <form method="post">
-      {% csrf_token %}
-
-      {{ form.non_field_errors }}
+      {% csrf_token %} {{ form.non_field_errors }}
 
       <!-- FIRST NAME -->
 
@@ -214,7 +215,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           {{ form.password }}
 
           <!-- SHOW/HIDE -->
-          <span class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+          <span
+            class="input-group-text"
+            onclick="togglePassword()"
+            style="cursor: pointer"
+          >
             <i class="fa fa-eye" id="eyeIcon"></i>
           </span>
         </div>
@@ -224,41 +229,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
       <!-- BUTTON -->
 
-      <button type="submit" class="signup-btn">
-        🚀 Register
-      </button>
-
+      <button type="submit" class="signup-btn">🚀 Register</button>
     </form>
 
     <!-- LOGIN LINK -->
 
     <div class="login-text">
-      <p>Already have an account?
+      <p>
+        Already have an account?
         <a href="/login/">Login</a>
       </p>
     </div>
-
   </div>
-
 </div>
 
 <!-- PASSWORD TOGGLE -->
 
 <script>
-function togglePassword() {
-  let passwordField = document.getElementById("id_password");
-  let icon = document.getElementById("eyeIcon");
+  function togglePassword() {
+    let passwordField = document.getElementById("id_password");
+    let icon = document.getElementById("eyeIcon");
 
-  if (passwordField.type === "password") {
-    passwordField.type = "text";
-    icon.classList.remove("fa-eye");
-    icon.classList.add("fa-eye-slash");
-  } else {
-    passwordField.type = "password";
-    icon.classList.remove("fa-eye-slash");
-    icon.classList.add("fa-eye");
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      passwordField.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
   }
-}
 </script>
 
 {% endblock %}

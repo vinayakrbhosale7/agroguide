@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import FarmerData
 from django.contrib.auth.decorators import login_required
 crop_data = {
@@ -221,4 +221,13 @@ def history(request):
 
 def about(request):
     return render(request,"about.html")
+
+def delete_history(request, id):
+    if request.method == "POST":
+        try:
+            record = FarmerData.objects.get(id=id)
+            record.delete()
+        except FarmerData.DoesNotExist:
+            pass
+    return redirect("history")
 

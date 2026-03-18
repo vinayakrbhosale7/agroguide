@@ -1,88 +1,81 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
+  /* WELCOME TEXT */
 
-/* WELCOME TEXT */
+  .welcome-title {
+    color: white;
+    font-weight: 700;
+  }
 
-.welcome-title {
-  color: white;
-  font-weight: 700;
-}
+  .welcome-sub {
+    color: #f1f1f1;
+  }
 
-.welcome-sub {
-  color: #f1f1f1;
-}
+  /* GLASS BOX */
 
-/* GLASS BOX */
+  .glass-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
 
-.glass-box {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+  /* CARDS */
 
-/* CARDS */
+  .dashboard-card {
+    border-radius: 15px;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.9);
+  }
 
-.dashboard-card {
-  border-radius: 15px;
-  transition: 0.3s;
-  background: rgba(255,255,255,0.9);
-}
+  .dashboard-card:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
 
-.dashboard-card:hover {
-  transform: translateY(-6px) scale(1.02);
-}
+  /* ICON CIRCLE */
 
-/* ICON CIRCLE */
+  .icon-circle {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
 
-.icon-circle {
-  width: 55px;
-  height: 55px;
-  font-size: 22px;
-}
+  /* HOW IT WORKS */
 
-/* HOW IT WORKS */
+  .step-circle {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-weight: bold;
+  }
 
-.step-circle {
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  font-weight: bold;
-}
+  /* LINK STYLE */
 
-/* LINK STYLE */
+  .card-link {
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-.card-link {
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.card-link:hover {
-  text-decoration: underline;
-}
-
+  .card-link:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <div class="container mt-4">
-
   <!-- WELCOME SECTION -->
 
   <div class="d-flex justify-content-between align-items-center mb-4 glass-box">
-
     <div>
-      <h2 class="welcome-title">
-        👋 Welcome, {{request.user.username}}!
-      </h2>
+      <h2 class="welcome-title">👋 Welcome, {{request.user.username}}!</h2>
 
-      <p class="welcome-sub">
-        Ready to get crop recommendations? 🌾
-      </p>
+      <p class="welcome-sub">Ready to get crop recommendations? 🌾</p>
     </div>
 
     <div class="text-end">
@@ -90,21 +83,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         Logged in as {{request.user.username}}
       </div>
     </div>
-
   </div>
 
   <!-- CARDS -->
 
   <div class="row g-4">
-
     <!-- Recommendation -->
 
     <div class="col-md-6">
       <div class="dashboard-card shadow p-4">
-
         <div class="d-flex align-items-center">
-
-          <div class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center icon-circle">
+          <div
+            class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center icon-circle"
+          >
             <i class="fa fa-plus"></i>
           </div>
 
@@ -119,9 +110,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
               Start →
             </a>
           </div>
-
         </div>
-
       </div>
     </div>
 
@@ -129,43 +118,35 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
     <div class="col-md-6">
       <div class="dashboard-card shadow p-4">
-
         <div class="d-flex align-items-center">
-
-          <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center icon-circle">
+          <div
+            class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center icon-circle"
+          >
             <i class="fa fa-history"></i>
           </div>
 
           <div class="ms-3">
             <h5 class="mb-1">View History</h5>
 
-            <p class="text-muted mb-2">
-              Check your past recommendations
-            </p>
+            <p class="text-muted mb-2">Check your past recommendations</p>
 
-            <a href="/his/history/" class="text-primary card-link">
-              View →
-            </a>
+            <a href="/his/history/" class="text-primary card-link"> View → </a>
           </div>
-
         </div>
-
       </div>
     </div>
-
   </div>
 
   <!-- HOW IT WORKS -->
 
   <div class="glass-box mt-5 p-5">
-
     <h3 class="text-center mb-5 text-white">⚙️ How It Works</h3>
 
     <div class="row text-center">
-
       <div class="col-md-4">
-
-        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
+        <div
+          class="bg-success text-white rounded-circle mx-auto mb-3 step-circle"
+        >
           1
         </div>
 
@@ -174,12 +155,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <p class="text-light">
           Provide soil type, rainfall, temperature, and season information
         </p>
-
       </div>
 
       <div class="col-md-4">
-
-        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
+        <div
+          class="bg-success text-white rounded-circle mx-auto mb-3 step-circle"
+        >
           2
         </div>
 
@@ -188,12 +169,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <p class="text-light">
           Our system analyzes your data and recommends suitable crops
         </p>
-
       </div>
 
       <div class="col-md-4">
-
-        <div class="bg-success text-white rounded-circle mx-auto mb-3 step-circle">
+        <div
+          class="bg-success text-white rounded-circle mx-auto mb-3 step-circle"
+        >
           3
         </div>
 
@@ -202,13 +183,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         <p class="text-light">
           All recommendations are saved for future reference
         </p>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
 
 {% endblock %}

@@ -1,64 +1,61 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
 
 <style>
-.history-title {
-  font-weight: bold;
-  color:  white;
-}
+  .history-title {
+    font-weight: bold;
+    color: white;
+  }
 
-.history-card {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  background: white;
-}
+  .history-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: white;
+  }
 
-.table thead {
-  background: linear-gradient(135deg,#1fa34a,#0b7d34);
-  color: white;
-}
+  .table thead {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+  }
 
-.table tbody tr:hover {
-  background-color: #f5f5f5;
-  transition: 0.3s;
-}
+  .table tbody tr:hover {
+    background-color: #f5f5f5;
+    transition: 0.3s;
+  }
 
-.crop-badge {
-  background: #d4edda;
-  color: #155724;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-weight: 500;
-}
+  .crop-badge {
+    background: #d4edda;
+    color: #155724;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
 
-.empty-box {
-  text-align: center;
-  padding: 30px;
-  color: gray;
-}
+  .empty-box {
+    text-align: center;
+    padding: 30px;
+    color: gray;
+  }
 
-.empty-box i {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
+  .empty-box i {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
 </style>
 
 <div class="container mt-5">
-
   <!-- TITLE -->
   <h2 class="text-center mb-4 history-title">
     <i class="fa fa-history"></i> Farmer History
   </h2>
 
   <div class="history-card p-3">
-
     <table class="table table-hover text-center align-middle">
-
       <thead>
         <tr>
           <th><i class="fa fa-leaf"></i> Soil</th>
@@ -67,12 +64,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           <th><i class="fa fa-calendar"></i> Season</th>
           <th><i class="fa fa-seedling"></i> Crop</th>
           <th><i class="fa fa-clock"></i> Date</th>
+          <th><i class="fa fa-trash"></i> Delete</th> <!-- NEW COLUMN -->
         </tr>
       </thead>
 
       <tbody>
-
-      {% for item in data %}
+        {% for item in data %}
 
         <tr>
           <td>{{ item.soil }}</td>
@@ -80,17 +77,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           <td>{{ item.rainfall }}</td>
           <td>{{ item.season }}</td>
           <td>
-            <span class="crop-badge">
-              🌾 {{ item.recommended_crop }}
-            </span>
+            <span class="crop-badge"> 🌾 {{ item.recommended_crop }} </span>
           </td>
           <td>{{ item.created_at|date:"d M Y, H:i" }}</td>
+
+          <!-- DELETE BUTTON -->
+          <td>
+            <form method="POST" action="/delete_history/{{ item.id }}/">
+              {% csrf_token %}
+              <button class="btn btn-danger btn-sm">
+                <i class="fa fa-trash"></i>
+              </button>
+            </form>
+          </td>
         </tr>
 
-      {% empty %}
+        {% empty %}
 
         <tr>
-          <td colspan="6">
+          <td colspan="7">
             <div class="empty-box">
               <i class="fa fa-database"></i>
               <p>No history available yet</p>
@@ -98,14 +103,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
           </td>
         </tr>
 
-      {% endfor %}
-
+        {% endfor %}
       </tbody>
-
     </table>
-
   </div>
-
 </div>
 
 {% endblock %}
