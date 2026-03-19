@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import FarmerData
+from .models import FarmerData, FertilizerRecommendation
 from django.contrib.auth.decorators import login_required
 crop_data = {
 
@@ -216,8 +216,18 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def history(request):
-    data = FarmerData.objects.all().order_by('-created_at')  # latest first
-    return render(request, "history.html", {"data": data})
+    crop_data = FarmerData.objects.all().order_by('-created_at')
+    fertilizer_data = FertilizerRecommendation.objects.all().order_by('-created_at')
+
+    print("CROP:", crop_data)
+    print("FERT:", fertilizer_data)
+
+    return render(request, "history.html", {
+        "data": crop_data,
+        "fdata": fertilizer_data
+    })
+
+
 
 def about(request):
     return render(request,"about.html")
@@ -230,4 +240,90 @@ def delete_history(request, id):
         except FarmerData.DoesNotExist:
             pass
     return redirect("history")
+
+def delete_fhistory(request, id):
+    if request.method == "POST":
+        try:
+            record = FertilizerRecommendation.objects.get(id=id)
+            record.delete()
+        except FertilizerRecommendation.DoesNotExist:
+            pass
+    return redirect("history")
+
+
+# Fertilizer base data
+fertilizer_data = {
+    "Rice": "Urea + DAP",
+    "Wheat": "NPK 12-32-16",
+    "Cotton": "NPK 20-20-20",
+    "Sugarcane": "Urea + Potash",
+    "Maize": "NPK 20-10-10",
+    "Bajra": "Urea + SSP",
+    "Jowar": "NPK 18-46-0",
+    "Barley": "NPK 10-26-26",
+    "Soybean": "DAP + Potash",
+    "Groundnut": "Gypsum + SSP",
+    "Mustard": "NPK 12-32-16",
+    "Chickpea": "DAP",
+    "Lentil": "NPK 10-20-20",
+    "Tea": "Ammonium Sulphate",
+    "Coffee": "NPK 17-17-17",
+    "Tomato": "NPK 19-19-19",
+    "Potato": "NPK 12-32-16",
+    "Onion": "NPK 10-26-26",
+    "Watermelon": "NPK 20-20-20",
+    "Cucumber": "NPK 19-19-19"
+}
+
+@login_required
+def fertilizer_view(request):
+
+    if request.method == "POST":
+        crop = request.POST['crop']
+        soil = request.POST['soil']
+        n = int(request.POST['nitrogen'])
+        p = int(request.POST['phosphorus'])
+        k = int(request.POST['potassium'])
+
+        # Base fertilizer
+        base = fertilizer_data.get(crop, "General NPK")
+
+        # Logic
+        if n < 50:
+            result = base + " + Add Urea"
+        elif p < 50:
+            result = base + " + Add DAP"
+        elif k < 50:
+            result = base + " + Add MOP"
+        else:
+            result = base
+
+        # Soil improvement
+        if soil == "Sandy":
+            result += " + Organic Compost"
+        elif soil == "Clay":
+            result += " + Gypsum"
+
+        # Save to DB
+        FertilizerRecommendation.objects.create(
+            crop=crop,
+            soil=soil,
+            nitrogen=n,
+            phosphorus=p,
+            potassium=k,
+            recommendation=result
+        )
+
+        # ✅ 👉 SHOW RESULT PAGE HERE
+        return render(request, "fertilizer_result.html", {
+            "crop": crop,
+            "soil": soil,
+            "n": n,
+            "p": p,
+            "k": k,
+            "result": result
+        })
+
+    # 👉 First time open
+    return render(request, "fertilizer.html")
 

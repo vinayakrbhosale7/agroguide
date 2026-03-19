@@ -1,0 +1,156 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<style>
+  .result-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .result-title {
+    font-weight: 700;
+    color: white;
+  }
+
+  .param-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.3s;
+  }
+
+  .param-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .fertilizer-card {
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    color: white;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+  }
+
+  .fertilizer-card:hover {
+    transform: scale(1.03);
+  }
+
+  .fertilizer-icon {
+    font-size: 50px;
+    animation: float 2s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .custom-btn {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .custom-btn:hover {
+    background: #ffd700;
+    color: black;
+    transform: scale(1.05);
+  }
+</style>
+
+<div class="container mt-5">
+
+  <!-- TITLE -->
+  <div class="text-center mb-5">
+    <h2 class="result-title">🌿 Fertilizer Recommendation Result</h2>
+    <p class="text-white">Based on your soil nutrient inputs</p>
+  </div>
+
+  <!-- INPUT PARAMETERS -->
+  <div class="result-box mb-5">
+    <h5 class="text-dark mb-4 text-center">📊 Input Parameters</h5>
+
+    <div class="row text-center g-3">
+
+      <div class="col-md-3">
+  <div class="param-card">
+    <i class="fa fa-seedling text-success"></i>
+    <h6>Crop</h6>
+    <p>{{ crop }}</p>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <div class="param-card">
+    <i class="fa fa-leaf text-success"></i>
+    <h6>Soil</h6>
+    <p>{{ soil }}</p>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="param-card">
+    <i class="fa fa-flask text-primary"></i>
+    <h6>Nitrogen (N)</h6>
+    <p>{{ n }}</p>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="param-card">
+    <i class="fa fa-vial text-warning"></i>
+    <h6>Phosphorus (P)</h6>
+    <p>{{ p }}</p>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="param-card">
+    <i class="fa fa-atom text-danger"></i>
+    <h6>Potassium (K)</h6>
+    <p>{{ k }}</p>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="text-center mb-3">
+    <h3 class="fw-semibold text-white">🌱 Recommended Fertilizer</h3>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="fertilizer-card text-center">
+
+        <div class="fertilizer-icon mb-3">🧪</div>
+
+        <h2>{{ result }}</h2>
+
+        <p>
+          This fertilizer is recommended based on your crop type and soil nutrient levels.
+        </p>
+
+        <a href="/fr/" class="btn btn-light custom-btn mt-3">
+          🔁 Try Again
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

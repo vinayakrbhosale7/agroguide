@@ -13,3 +13,22 @@ class FarmerData(models.Model):
 
     def __str__(self):
         return self.recommended_crop
+    
+
+from django.db import models
+
+
+class FertilizerRecommendation(models.Model):
+    crop = models.CharField(max_length=100)
+    soil = models.CharField(max_length=50)
+
+    nitrogen = models.IntegerField()
+    phosphorus = models.IntegerField()
+    potassium = models.IntegerField()
+
+    recommendation = models.CharField(max_length=200)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.crop}"

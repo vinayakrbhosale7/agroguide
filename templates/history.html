@@ -64,7 +64,8 @@
           <th><i class="fa fa-calendar"></i> Season</th>
           <th><i class="fa fa-seedling"></i> Crop</th>
           <th><i class="fa fa-clock"></i> Date</th>
-          <th><i class="fa fa-trash"></i> Delete</th> <!-- NEW COLUMN -->
+          <th><i class="fa fa-trash"></i> Delete</th>
+          <!-- NEW COLUMN -->
         </tr>
       </thead>
 
@@ -103,6 +104,68 @@
           </td>
         </tr>
 
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-center mb-4 history-title">
+    <i class="fa fa-history"></i> Fertilizer History
+  </h2>
+  <div class="history-card p-3">
+    <table class="table table-hover text-center align-middle">
+      <thead>
+        <tr>
+          <th><i class="fa fa-seedling"></i> Crop</th>
+          <th><i class="fa fa-leaf"></i> Soil</th>
+          <th><i class="fa fa-flask"></i> N</th>
+          <th><i class="fa fa-vial"></i> P</th>
+          <th><i class="fa fa-atom"></i> K</th>
+          <th><i class="fa fa-check-circle"></i> Fertilizer</th>
+          <th><i class="fa fa-clock"></i> Date</th>
+          <th><i class="fa fa-trash"></i> Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in fdata %}
+
+        <tr>
+          <td>
+            <span class="crop-badge"> 🌾 {{ item.crop }} </span>
+          </td>
+          <td>{{ item.soil }}</td>
+
+          <!-- ✅ FIXED NPK -->
+          <td>{{ item.nitrogen }}</td>
+          <td>{{ item.phosphorus }}</td>
+          <td>{{ item.potassium }}</td>
+
+          <td>
+            <span class="crop-badge"> 🌱 {{ item.recommendation }} </span>
+          </td>
+
+          <td>{{ item.created_at|date:"d M Y, H:i" }}</td>
+
+          <td>
+            <form method="POST" action="/delete_fhistory/{{ item.id }}/">
+              {% csrf_token %}
+              <button class="btn btn-danger btn-sm">
+                <i class="fa fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+          <td colspan="8">
+            <div class="empty-box">
+              <i class="fa fa-database"></i>
+              <p>No fertilizer history available</p>
+            </div>
+          </td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>

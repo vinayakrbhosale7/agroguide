@@ -1,0 +1,182 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<style>
+  .form-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-title {
+    font-weight: 700;
+    color: white;
+  }
+
+  .form-control,
+  .form-select {
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.3s;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #1fa34a;
+    box-shadow: 0 0 8px rgba(31, 163, 74, 0.5);
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: white;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #1fa34a, #0b7d34);
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    transition: 0.3s;
+    color: white;
+  }
+
+  .submit-btn:hover {
+    background: #ffd700;
+    color: black;
+    transform: scale(1.05);
+  }
+
+  .title-icon {
+    font-size: 45px;
+    color: #1fa34a;
+    animation: float 2s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .result-box {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 20px;
+    color: #fff;
+    margin-top: 20px;
+    text-align: center;
+  }
+</style>
+
+<div class="container mt-5">
+
+  <!-- TITLE -->
+  <div class="text-center mb-5">
+    <div class="title-icon mb-2">
+      <i class="fa fa-flask"></i>
+    </div>
+
+    <h2 class="form-title">Fertilizer Recommendation</h2>
+    <p class="text-white">Enter soil nutrients to get best fertilizer 🌱</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="form-box">
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="row">
+
+            <!-- Crop -->
+            <div class="col-md-6 mb-4">
+              <label class="form-label">🌾 Crop</label>
+              <select name="crop" class="form-select">
+                <option value="" disabled selected>-- Select Crop --</option>
+                <option>Rice</option>
+                <option>Wheat</option>
+                <option>Cotton</option>
+                <option>Sugarcane</option>
+                <option>Maize</option>
+                <option>Bajra</option>
+                <option>Jowar</option>
+                <option>Barley</option>
+                <option>Soybean</option>
+                <option>Groundnut</option>
+                <option>Mustard</option>
+                <option>Chickpea</option>
+                <option>Lentil</option>
+                <option>Tea</option>
+                <option>Coffee</option>
+                <option>Tomato</option>
+                <option>Potato</option>
+                <option>Onion</option>
+                <option>Watermelon</option>
+                <option>Cucumber</option>
+              </select>
+            </div>
+
+            <!-- Soil -->
+            <div class="col-md-6 mb-4">
+              <label class="form-label">🌱 Soil Type</label>
+              <select name="soil" class="form-select">
+                <option value="" disabled selected>-- Select Soil Type --</option>
+                <option>Loamy</option>
+                <option>Clay</option>
+                <option>Black</option>
+                <option>Sandy</option>
+                <option>Acidic</option>
+                <option>Alluvial</option>
+              </select>
+            </div>
+
+            <!-- Nitrogen -->
+            <div class="col-md-4 mb-4">
+              <label class="form-label">🧪 Nitrogen (N)</label>
+              <input type="number" name="nitrogen" class="form-control" placeholder="Enter N value" required>
+            </div>
+
+            <!-- Phosphorus -->
+            <div class="col-md-4 mb-4">
+              <label class="form-label">🧪 Phosphorus (P)</label>
+              <input type="number" name="phosphorus" class="form-control" placeholder="Enter P value" required>
+            </div>
+
+            <!-- Potassium -->
+            <div class="col-md-4 mb-4">
+              <label class="form-label">🧪 Potassium (K)</label>
+              <input type="number" name="potassium" class="form-control" placeholder="Enter K value" required>
+            </div>
+
+          </div>
+
+          <!-- BUTTON -->
+          <button class="btn submit-btn w-100 py-2 mt-3">
+            🌿 Get Fertilizer Recommendation
+          </button>
+
+        </form>
+
+        <!-- RESULT -->
+        {% if result %}
+        <div class="result-box">
+          <h4>🌱 Recommended Fertilizer</h4>
+          <p>{{ result }}</p>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

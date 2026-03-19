@@ -42,6 +42,7 @@
 
   .form-label {
     font-weight: 600;
+    color : white;
   }
 
   /* BUTTON */
@@ -52,6 +53,7 @@
     border-radius: 30px;
     font-size: 18px;
     transition: 0.3s;
+    color: white;
   }
 
   .submit-btn:hover {
@@ -109,6 +111,7 @@
               <label class="form-label">🌱 Soil Type</label>
 
               <select name="soil" class="form-select">
+                <option value="" disabled selected>-- Select Soil Type --</option>
                 <option>Loamy</option>
                 <option>Clay</option>
                 <option>Black</option>
@@ -126,6 +129,7 @@
               <label class="form-label">📅 Season</label>
 
               <select name="season" class="form-select">
+                <option value="" disabled selected>-- Select Season --</option>
                 <option>Kharif (Monsoon)</option>
                 <option>Rabi (Winter)</option>
                 <option>Annual</option>
