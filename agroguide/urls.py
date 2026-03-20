@@ -33,5 +33,6 @@ urlpatterns = [
     path('delete_his/<int:id>/', include("farmer.urls")),
     path('fertilizer_recommendation/', include("farmer.urls")),
     path('delete_fhis/<int:id>/', include("farmer.urls")),
+    path ('feedback/', include("farmer.urls")),
 ]
 

@@ -10,5 +10,5 @@ path('about/', views.about, name='about'),
 path('delete_history/<int:id>/', views.delete_history, name='delete_history'),
 path('fr/', views.fertilizer_view, name='fertilizer_recommendation'),
 path('delete_fhistory/<int:id>/', views.delete_fhistory, name='delete_fhistory'),
-
+path('feedback/', views.feedback_view, name='feedback'),
 ]

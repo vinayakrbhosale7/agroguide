@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<style>
+.feedback-box {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.star-rating i {
+  font-size: 30px;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.star-rating i.active {
+  color: gold;
+}
+</style>
+
+<div class="container mt-5">
+  <div class="feedback-box">
+    <h3 class="text-center mb-4">⭐ Give Your Feedback</h3>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- Star Rating -->
+      <div class="text-center mb-3">
+        <div class="star-rating">
+          <i class="fa fa-star" data-value="1"></i>
+          <i class="fa fa-star" data-value="2"></i>
+          <i class="fa fa-star" data-value="3"></i>
+          <i class="fa fa-star" data-value="4"></i>
+          <i class="fa fa-star" data-value="5"></i>
+        </div>
+        <input type="hidden" name="rating" id="rating">
+      </div>
+
+      <!-- Message -->
+      <div class="mb-3">
+        <textarea name="message" class="form-control" rows="4"
+          placeholder="Write your feedback..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">
+        Submit Feedback
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+const stars = document.querySelectorAll(".star-rating i");
+const ratingInput = document.getElementById("rating");
+
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    let value = star.getAttribute("data-value");
+    ratingInput.value = value;
+
+    stars.forEach(s => s.classList.remove("active"));
+
+    for (let i = 0; i < value; i++) {
+      stars[i].classList.add("active");
+    }
+  });
+});
+</script>
+
+{% endblock %}
